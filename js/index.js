@@ -27,3 +27,20 @@ const displayCategory = categories => {
         categorySection.appendChild(categoryDiv);
     });
 }
+/*--------------------------------
+    Load News following categroy
+ --------------------------------*/
+const loadCategoryNews = async categoryId => {
+    //start loader
+    spinner(true);
+
+    const url = `https://openapi.programming-hero.com/api/news/category/${categoryId}`;
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        displayNewsInfo(data.data);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
