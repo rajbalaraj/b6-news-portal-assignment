@@ -49,7 +49,47 @@
     </header>
     <!-- header end  -->
     <!-- news fond  -->
+    <main class="container mx-auto">
+        <div id="spinner" class="hidden items-center justify-center">
+            <div class="absolute lds-dual-ring mt-80"></div>
+        </div>
+        <section id="news-cunter" class="bg-slate-100 pt-4 pb-4 ml-11 mr-11 pl-6 rounded-lg">
+            <div>
+                <h4 class="font-semibold text-slate-500"><span id="counter"></span> News found.</h4>
+            </div>
+        </section>
 
+        <section id="sorting-section" class="ml-3 md:ml-11 mr-3 md:mr-11 flex pt-5 pb-5 justify-between items-center">
+            <div>
+                <label for="sort-dropdown">Sort By View</label>
+                <select name="sort" id="sort-dropdown" class="border">
+                    <option selected value="">Default</option>
+                    <option value="Breaking news">Breaking news</option>
+                    <option value="Top View">Top View</option>
+                </select>
+            </div>
+            <div class="flex gap-2 md:block">
+                <button
+                    class="hover:bg-blue-500 border font-semibold border-blue-500 text-slate-600 hover:text-white p-1 md:p-2 rounded-md">Today's
+                    Pick</button>
+                <button
+                    class="hover:bg-blue-500 border font-semibold border-blue-500 text-slate-600 hover:text-white p-1 md:p-2 rounded-md">Trending</button>
+            </div>
+        </section>
+
+        <section id="news-card-container" class="ml-3 mr-3 md:ml-11 md:mr-11 grid gap-5">
+
+        </section>
+
+        <section id="modal-container">
+            <div id="modal-overlay"
+                class="overflow-auto hidden fixed w-full h-full top-0 bottom-0 right-0 left-0 bg-gray-400">
+                <div id="modal-body" class=" w-9/12 relative mx-auto top-12 rounded-sm bg-white p-5">
+
+                </div>
+            </div>
+        </section>
+    </main>
     <!-- news found  -->
     <script src="js/index.js"></script>
     <!-- footer start  -->
