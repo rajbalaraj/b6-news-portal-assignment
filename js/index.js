@@ -105,3 +105,86 @@ const displayNewsInfo = allNewsInfo => {
     // stop spinner
     spinner(false);
 }
+
+/* ---------------------------------
+        Load Model api
+--------------------------------- */
+const loadModal = async newsId => {
+    spinner(true);
+    const url = `https://openapi.programming-hero.com/api/news/${newsId}`;
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        displayModalData(data.data[0]);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+/* -------------------------------
+    Display Modal data
+------------------------------- */
+const modalOverlay = document.getElementById('modal-overlay');
+const displayModalData = data => {
+    modalOverlay.classList.remove('hidden');
+    const modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = `
+        <h1 class="text-2xl font-bold mb-5">${data.title}</h1>
+        <div class="flex gap-3 mb-5">
+            <img class="w-11 rounded-full" src="${data.author.img}">
+            <div>
+                <h4 class="text-lg font-semibold">${data.author.name ? data.author.name : "Not available"}</h4>
+                <p>${data.author.published_date ? data.author.published_date : 'Not available'}</p>
+            </div>
+        </div>
+        <img class='w-full mb-5' src="${data.image_url}">
+        <p>${data.details}</p>
+        <i onclick="modalOff()" class="absolute -top-4 -right-3 px-2 rounded-full bg-white border cursor-pointer text-2xl fa-solid fa-xmark"></i>
+    `;
+    spinner(false);
+}
+/* ------------------------------
+    Modal Closing
+ ------------------------------*/
+const modalOff = () => {
+    modalOverlay.classList.add('hidden');
+}
+/* --------------------------------
+    spinner functions
+-------------------------------- */
+const spinner = data => {
+    const spinnerDiv = document.getElementById('spinner');
+    if (data === true) {
+        spinnerDiv.classList.remove('hidden');
+        spinnerDiv.classList.add('flex');
+    }
+    else {
+        spinnerDiv.classList.remove('flex');
+        spinnerDiv.classList.add('hidden');
+    }
+}
+
+/* ------------------------------
+    Toggle button for moblie
+------------------------------ */
+const togglerBtn = document.getElementById('toggler-btn');
+let toggle = false;
+const togglerOn = () => {
+    if (toggle === false) {
+        toggle = true;
+        togglerBtn.classList.remove('hidden');
+    }
+    else {
+        togglerBtn.classList.add('hidden');
+        toggle = false;
+    }
+}
+
+
+/* ----------------------------------------
+    call function for automatic calling
+------------------------------------------ */
+loadCategoryNews('01')
+
+loadCategory();
